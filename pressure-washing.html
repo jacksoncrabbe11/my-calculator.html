@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pressure Washing Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .calculator {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h2>Pressure Washing Calculator</h2>
+        <div class="input-group">
+            <label>Square Footage:</label>
+            <input type="number" id="sqft" min="0" value="0">
+        </div>
+        <div class="input-group">
+            <label>Surface Type:</label>
+            <select id="surface">
+                <option value="1.0">Concrete</option>
+                <option value="1.2">Wood (+20%)</option>
+                <option value="1.5">Brick (+50%)</option>
+            </select>
+        </div>
+        <button onclick="calculatePrice()">Calculate Price</button>
+        <div class="result">
+            <h3>Total Price: $<span id="totalPrice">0.00</span></h3>
+        </div>
+    </div>
+
+    <script>
+        function calculatePrice() {
+            const sqft = parseInt(document.getElementById('sqft').value) || 0;
+            const surface = parseFloat(document.getElementById('surface').value);
+
+            const pricePerSqft = 0.15; // $0.15 per square foot
+            const totalPrice = sqft * pricePerSqft * surface;
+            document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+        }
+    </script>
+</body>
+</html>
